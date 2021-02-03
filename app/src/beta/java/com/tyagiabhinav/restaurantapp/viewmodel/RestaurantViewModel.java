@@ -28,18 +28,36 @@ public class RestaurantViewModel extends AndroidViewModel {
         storeFeed = restaurentRepository.getStoreFeed();
     }
 
+    /**
+     *
+     * @return LiveData<StoreFeed>
+     */
     public LiveData<StoreFeed> getStoreFeed(){
         return storeFeed;
     }
 
+    /**
+     * if progress bar is visible or not
+     *
+     * @return LiveData<Boolean>
+     */
     public LiveData<Boolean> isProgressVisible() {
         return progressVisible;
     }
 
+    /**
+     * set the selected store for detail view
+     *
+     * @param store
+     */
     public void setSelectedStore(Store store){
         this.selectedStore.postValue(store);
     }
 
+    /**
+     *
+     * @return
+     */
     public LiveData<Store> getSelectedStore(){
         return this.selectedStore;
     }

@@ -52,9 +52,11 @@ public class RestaurantListFragment extends Fragment implements RestaurantListRe
     public void onStoreSelected(Store store) {
         viewModel.setSelectedStore(store);
         if (isTablet) {
+            // if tablet, get the nav host fragment for master detail view and show store details
             NavHostFragment navHostFragment = (NavHostFragment) getChildFragmentManager().findFragmentById(R.id.navHostFragmentLand);
             navHostFragment.getNavController().navigate(R.id.restaurantDetailFragment);
         } else {
+            // navigate to detail view when store is selected
             Navigation.findNavController(binding.getRoot()).navigate(R.id.action_list_to_detail);
         }
     }

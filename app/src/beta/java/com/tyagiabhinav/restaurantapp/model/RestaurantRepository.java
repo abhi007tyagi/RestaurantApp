@@ -22,14 +22,27 @@ public class RestaurantRepository {
         fetchStoreFeed();
     }
 
+    /**
+     * set the location to fetch the store feed from the service
+     *
+     * @return LiveData<StoreFeed>
+     */
     public LiveData<StoreFeed> getStoreFeed(){
         return storFeed;
     }
 
+    /**
+     * if network call is still going on or not to show progress bar
+     *
+     * @return LiveData<Boolean>
+     */
     public LiveData<Boolean> isLoading() {
         return isLoading;
     }
 
+    /**
+     * fetch store feed based on latitude and longitude
+     */
     private void fetchStoreFeed(){
         isLoading.postValue(true);
         Call<StoreFeed> call = storeFeedAPI.getStoreFeed();

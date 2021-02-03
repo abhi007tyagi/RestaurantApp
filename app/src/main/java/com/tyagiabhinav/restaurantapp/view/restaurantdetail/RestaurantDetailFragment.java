@@ -32,8 +32,8 @@ public class RestaurantDetailFragment extends Fragment {
             // update UI
             binding.menuPager.setAdapter(new PopularMenuItemAdapter(store.getMenus().get(0).getPopularItems()));
             binding.setStore(store);
-            new TabLayoutMediator(binding.dotTab, binding.menuPager, (tab, position) -> tab.select()
-            ).attach();
+            // set the navigation highlight DOT for pager view
+            new TabLayoutMediator(binding.dotTab, binding.menuPager, (tab, position) -> tab.select()).attach();
         });
         return binding.getRoot();
     }

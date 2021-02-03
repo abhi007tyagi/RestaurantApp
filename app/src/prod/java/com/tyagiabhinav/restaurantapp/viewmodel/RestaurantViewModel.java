@@ -30,27 +30,54 @@ public class RestaurantViewModel extends AndroidViewModel {
         storeFeed = restaurantRepository.getStoreFeed();
     }
 
+    /**
+     * set the location to fetch the store feed from the service
+     *
+     * @param lat
+     * @param lng
+     */
     public void setLocationAndInitiateStoreFeed(String lat, String lng) {
         this.isLocationAvailable = true;
         restaurantRepository.setLocationAndFetchStoreFeed(lat, lng);
     }
 
-    public boolean isLocationAvailable(){
+    /**
+     * if location has been set or not
+     *
+     * @return boolean
+     */
+    public boolean isLocationAvailable() {
         return isLocationAvailable;
     }
 
+    /**
+     * @return LiveData<StoreFeed>
+     */
     public LiveData<StoreFeed> getStoreFeed() {
         return storeFeed;
     }
 
+    /**
+     * if progress bar is visible or not
+     *
+     * @return LiveData<Boolean>
+     */
     public LiveData<Boolean> isProgressVisible() {
         return progressVisible;
     }
 
+    /**
+     * set the selected store for detail view
+     *
+     * @param store
+     */
     public void setSelectedStore(Store store) {
         this.selectedStore.postValue(store);
     }
 
+    /**
+     * @return LiveData<Store>
+     */
     public LiveData<Store> getSelectedStore() {
         return this.selectedStore;
     }

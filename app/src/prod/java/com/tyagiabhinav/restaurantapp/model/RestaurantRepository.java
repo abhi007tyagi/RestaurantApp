@@ -21,18 +21,39 @@ public class RestaurantRepository {
         storFeed = new MutableLiveData<>();
     }
 
+    /**
+     * set the location to fetch the store feed from the service
+     *
+     * @param lat
+     * @param lng
+     */
     public void setLocationAndFetchStoreFeed(String lat, String lng){
         fetchStoreFeed(lat, lng);
     }
 
+    /**
+     *
+     * @return LiveData<StoreFeed>
+     */
     public LiveData<StoreFeed> getStoreFeed(){
         return storFeed;
     }
 
+    /**
+     * if network call is still going on or not to show progress bar
+     *
+     * @return LiveData<Boolean>
+     */
     public LiveData<Boolean> isLoading() {
         return isLoading;
     }
 
+    /**
+     * fetch store feed based on latitude and longitude
+     *
+     * @param lat
+     * @param lng
+     */
     private void fetchStoreFeed(String lat, String lng){
         isLoading.postValue(true);
         Call<StoreFeed> call = storeFeedAPI.getStoreFeed(lat, lng, 0, 50);
