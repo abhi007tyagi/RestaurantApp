@@ -1,0 +1,15 @@
+<resources>
+	<dimen name="margin_xlarge">32dp</dimen>
+	<dimen name="margin_small">5.3dp</dimen>
+	<dimen name="thickness_dot">2.7dp</dimen>
+	<dimen name="height_item_logo">93.3dp</dimen>
+	<dimen name="width_item_logo">146.6dp</dimen>
+	<dimen name="height_detail_logo">160dp</dimen>
+	<dimen name="margin_large">21.3dp</dimen>
+	<dimen name="height_tab">8dp</dimen>
+	<dimen name="margin_medium">10.7dp</dimen>
+	<dimen name="margin_screen">21.3dp</dimen>
+	<dimen name="text_large_size">19.8sp</dimen>
+	<dimen name="text_medium_size">15.4sp</dimen>
+	<dimen name="text_small_size">11sp</dimen>
+</resources>

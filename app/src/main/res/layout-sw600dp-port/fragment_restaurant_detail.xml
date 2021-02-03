@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_screen">
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_detail_logo"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:accessibilityTraversalBefore="@id/name"
+            android:contentDescription="@{store.name + `logo`}"
+            android:scaleType="fitCenter"
+            app:imageUrl="@{store.coverImgUrl}"
+            app:layout_constraintEnd_toStartOf="@+id/guideVertical"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/placeholder" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:accessibilityTraversalAfter="@id/logo"
+            android:ellipsize="end"
+            android:gravity="end"
+            android:maxLines="2"
+            android:text="@{store.name}"
+            android:textSize="@dimen/text_large_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/distance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideVertical"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Giordano's" />
+
+        <TextView
+            android:id="@+id/distance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:accessibilityTraversalAfter="@id/name"
+            android:gravity="end"
+            android:text="@{String.valueOf(Math.round(store.distanceFromConsumer * 100)/100) + ` miles`}"
+            android:textSize="@dimen/text_medium_size"
+            app:layout_constraintBottom_toTopOf="@+id/deliveryFee"
+            app:layout_constraintEnd_toEndOf="@+id/name"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/name"
+            app:layout_constraintTop_toBottomOf="@+id/name"
+            tools:text="6 miles" />
+
+        <TextView
+            android:id="@+id/deliveryFee"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:accessibilityTraversalAfter="@id/distance"
+            android:contentDescription="@{`Has `+store.displayDeliveryFee}"
+            android:gravity="end"
+            android:text="@{store.displayDeliveryFee}"
+            android:textSize="@dimen/text_medium_size"
+            app:layout_constraintBottom_toTopOf="@+id/description"
+            app:layout_constraintEnd_toEndOf="@+id/distance"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/distance"
+            app:layout_constraintTop_toBottomOf="@+id/distance"
+            tools:text="Free Delivery" />
+
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:accessibilityTraversalAfter="@id/deliveryFee"
+            android:contentDescription="@{`Prepares: `+store.description}"
+            android:text="@{store.description}"
+            android:textSize="@dimen/text_medium_size"
+            app:layout_constraintBottom_toTopOf="@+id/dotTab"
+            app:layout_constraintEnd_toEndOf="@+id/distance"
+            app:layout_constraintStart_toStartOf="@+id/logo"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Pizza, Calzone, Pasta" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideVertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.52" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.40" />
+
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/menuPager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:accessibilityTraversalAfter="@id/description"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideHorizontal" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/dotTab"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_tab"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:accessibilityTraversalAfter="@id/menuPager"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toTopOf="@+id/menuPager"
+            app:layout_constraintEnd_toEndOf="@+id/menuPager"
+            app:layout_constraintStart_toStartOf="@+id/menuPager"
+            app:tabBackground="@drawable/dot_selector"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp">
+
+        </com.google.android.material.tabs.TabLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="store"
+            type="com.tyagiabhinav.restaurantapp.model.pojo.Store" />
+
+        <variable
+            name="util"
+            type="com.tyagiabhinav.restaurantapp.view.UiUtil" />
+
+    </data>
+</layout>

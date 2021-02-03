@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/popItemImg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@{popItem.name + `image`}"
+            android:scaleType="center"
+            app:imageUrl="@{popItem.imgUrl}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/placeholder" />
+
+        <ImageView
+            android:id="@+id/popItemBg"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/popItemImg"
+            app:layout_constraintStart_toStartOf="@+id/popItemImg"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            app:srcCompat="@drawable/pop_item_bg" />
+
+
+        <TextView
+            android:id="@+id/popItemPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:accessibilityTraversalAfter="@id/popItemName"
+            android:elevation="2dp"
+            android:gravity="end"
+            android:text="@{`$`+String.valueOf((double)popItem.price/100.0)}"
+            android:textSize="@dimen/text_small_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/popItemName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/popItemName"
+            app:layout_constraintTop_toTopOf="@+id/popItemName"
+            tools:text="$6.00" />
+
+        <TextView
+            android:id="@+id/popItemDescription"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:accessibilityTraversalAfter="@id/popItemPrice"
+            android:elevation="2dp"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:text="@{popItem.description}"
+            android:textSize="@dimen/text_small_size"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/popItemPrice"
+            app:layout_constraintStart_toStartOf="@+id/popItemName"
+            app:layout_constraintTop_toBottomOf="@+id/popItemName"
+            tools:text="French Fries are great!" />
+
+        <TextView
+            android:id="@+id/popItemName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:accessibilityTraversalAfter="@id/popItemImg"
+            android:elevation="2dp"
+            android:gravity="start"
+            android:text="@{popItem.name}"
+            android:textSize="@dimen/text_small_size"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/popItemPrice"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="French Fries" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.61" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="popItem"
+            type="com.tyagiabhinav.restaurantapp.model.pojo.PopularItem" />
+
+        <variable
+            name="util"
+            type="com.tyagiabhinav.restaurantapp.view.UiUtil" />
+
+    </data>
+</layout>
