@@ -9,7 +9,7 @@
 	<dimen name="height_tab">8dp</dimen>
 	<dimen name="margin_medium">10.7dp</dimen>
 	<dimen name="margin_screen">21.3dp</dimen>
-	<dimen name="text_large_size">19.8sp</dimen>
-	<dimen name="text_medium_size">15.4sp</dimen>
-	<dimen name="text_small_size">11sp</dimen>
+	<dimen name="text_large_size">20sp</dimen>
+	<dimen name="text_medium_size">18sp</dimen>
+	<dimen name="text_small_size">15sp</dimen>
 </resources>
