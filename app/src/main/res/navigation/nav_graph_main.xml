@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/restaurantListFragment"
         android:name="com.tyagiabhinav.restaurantapp.view.restaurantlist.RestaurantListFragment"
-        android:label="RestaurantListFragment" >
+        android:label="@string/list_title" >
         <action
             android:id="@+id/action_list_to_detail"
             app:destination="@id/restaurantDetailFragment" />
@@ -15,5 +15,5 @@
     <fragment
         android:id="@+id/restaurantDetailFragment"
         android:name="com.tyagiabhinav.restaurantapp.view.restaurantdetail.RestaurantDetailFragment"
-        android:label="RestaurantDetailFragment" />
+        android:label="@string/detail_title" />
 </navigation>

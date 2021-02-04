@@ -11,6 +11,7 @@ import android.util.Log;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.Task;
+import com.tyagiabhinav.restaurantapp.databinding.ActivityMainBinding;
 import com.tyagiabhinav.restaurantapp.viewmodel.RestaurantViewModel;
 
 import androidx.annotation.NonNull;
@@ -19,11 +20,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.ui.NavigationUI;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     private static final int LOCATION_REQUEST_CODE = 999;
+    private NavController navController;
     private FusedLocationProviderClient fusedLocationClient;
     private MutableLiveData<Location> location;
     private RestaurantViewModel viewModel;
@@ -31,7 +37,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+        navController = Navigation.findNavController(this, R.id.navHostFragmentMain);
+        NavigationUI.setupActionBarWithNavController(this, navController);
         // initialize location client
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         // initialize view model
@@ -48,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         askPermission();
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return navController.navigateUp();
     }
 
     @Override
@@ -101,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
      * shows user dialog for why they need to give permission
      */
     private void showWhyPermissionRequiredDialog() {
-        new AlertDialog.Builder(getApplicationContext())
+        new AlertDialog.Builder(this)
                 .setMessage(R.string.why_permission_required)
                 .setCancelable(false)
                 .setPositiveButton(android.R.string.ok, (dialog, which) -> {

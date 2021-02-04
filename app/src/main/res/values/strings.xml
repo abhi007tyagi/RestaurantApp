@@ -3,4 +3,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="why_permission_required">Permission is required to fetch result based on your location!</string>
+    <string name="list_title">Discover</string>
+    <string name="detail_title">Details</string>
 </resources>

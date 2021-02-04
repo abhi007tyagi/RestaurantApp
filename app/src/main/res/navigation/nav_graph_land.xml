@@ -6,5 +6,5 @@
     <fragment
         android:id="@+id/restaurantDetailFragment"
         android:name="com.tyagiabhinav.restaurantapp.view.restaurantdetail.RestaurantDetailFragment"
-        android:label="RestaurantDetailFragment" />
+        android:label="@string/detail_title" />
 </navigation>
