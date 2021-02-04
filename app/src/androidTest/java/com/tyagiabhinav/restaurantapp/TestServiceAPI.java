@@ -45,7 +45,8 @@ public class TestServiceAPI {
     public void test01_FetchStoreFeed() {
         Log.d(TAG, "running test01_FetchStoreFeed...");
         CountDownLatch latch = new CountDownLatch(1);
-        Call<StoreFeed> call = storeFeedAPI.getStoreFeed();//storeFeedAPI.getStoreFeed("37.422740", "-122.139956", 0, 50);
+        // run only in prod setting with lat - lng
+        Call<StoreFeed> call = storeFeedAPI.getStoreFeed("37.422740", "-122.139956", 0, 50);
         call.enqueue(new Callback<StoreFeed>() {
             @Override
             public void onResponse(Call<StoreFeed> call, Response<StoreFeed> response) {
