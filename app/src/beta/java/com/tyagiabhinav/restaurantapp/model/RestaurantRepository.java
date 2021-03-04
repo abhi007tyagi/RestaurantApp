@@ -49,6 +49,9 @@ public class RestaurantRepository {
         call.enqueue(new Callback<StoreFeed>() {
             @Override
             public void onResponse(Call<StoreFeed> call, Response<StoreFeed> response) {
+                // StoreFeed
+                // list store
+                // loop->update each store from shared pref
                 storFeed.postValue(response.body());
                 isLoading.postValue(false);
             }

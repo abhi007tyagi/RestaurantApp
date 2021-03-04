@@ -35,7 +35,7 @@ public class RestaurantListFragment extends Fragment implements RestaurantListRe
         viewModel = new ViewModelProvider(requireActivity()).get(RestaurantViewModel.class);
         viewModel.getStoreFeed().observe(getViewLifecycleOwner(), storeFeed -> {
             // update UI
-            RestaurantListRecyclerAdapter adapter = new RestaurantListRecyclerAdapter(storeFeed.getStores(), this);
+            RestaurantListRecyclerAdapter adapter = new RestaurantListRecyclerAdapter(viewModel, storeFeed.getStores(), this);
             RecyclerView recyclerview = binding.restaurantRecyclerLayout.restaurantList;
             recyclerview.setAdapter(adapter);
             recyclerview.addItemDecoration(new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));

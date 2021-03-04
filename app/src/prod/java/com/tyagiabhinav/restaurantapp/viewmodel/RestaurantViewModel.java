@@ -5,6 +5,7 @@ import android.content.Context;
 import android.location.Location;
 
 import com.tyagiabhinav.restaurantapp.model.RestaurantRepository;
+import com.tyagiabhinav.restaurantapp.model.SharedPrefManager;
 import com.tyagiabhinav.restaurantapp.model.pojo.Store;
 import com.tyagiabhinav.restaurantapp.model.pojo.StoreFeed;
 
@@ -80,5 +81,9 @@ public class RestaurantViewModel extends AndroidViewModel {
      */
     public LiveData<Store> getSelectedStore() {
         return this.selectedStore;
+    }
+
+    public void setStoreLiked(String id, boolean liked){
+        restaurantRepository.setStoreLiked(id, liked);
     }
 }

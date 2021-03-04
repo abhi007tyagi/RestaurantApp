@@ -3,10 +3,14 @@ package com.tyagiabhinav.restaurantapp.model.pojo;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.tyagiabhinav.restaurantapp.BR;
 
 import java.util.List;
 
-public class Store {
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
+public class Store extends BaseObservable {
 
     @SerializedName("is_consumer_subscription_eligible")
     @Expose
@@ -87,6 +91,18 @@ public class Store {
     @Expose
     private List<MerchantPromotion> merchantPromotions = null;
 
+    private boolean liked;
+
+    //    @Bindable
+    public boolean isLiked() {
+        return liked;
+    }
+
+    public void setLiked(boolean like) {
+        liked = like;
+//        notifyPropertyChanged(BR.liked);
+    }
+
     public boolean isIsConsumerSubscriptionEligible() {
         return isConsumerSubscriptionEligible;
     }
@@ -127,8 +143,8 @@ public class Store {
         this.numRatings = numRatings;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return String.valueOf(id);
     }
 
     public void setId(int id) {

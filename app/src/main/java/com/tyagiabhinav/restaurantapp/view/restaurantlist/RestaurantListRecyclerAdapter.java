@@ -1,11 +1,14 @@
 package com.tyagiabhinav.restaurantapp.view.restaurantlist;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.tyagiabhinav.restaurantapp.R;
 import com.tyagiabhinav.restaurantapp.databinding.ItemRestaurantBinding;
+import com.tyagiabhinav.restaurantapp.model.SharedPrefManager;
 import com.tyagiabhinav.restaurantapp.model.pojo.Store;
+import com.tyagiabhinav.restaurantapp.viewmodel.RestaurantViewModel;
 
 import java.util.List;
 
@@ -15,10 +18,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class RestaurantListRecyclerAdapter extends RecyclerView.Adapter<RestaurantListRecyclerAdapter.StoreFeedViewHolder> {
 
+    RestaurantViewModel restaurantViewModel;
     List<Store> storeList;
     OnStoreSelectedListener onStoreSelectedListener;
 
-    public RestaurantListRecyclerAdapter(List<Store> storeFeed, OnStoreSelectedListener onStoreSelectedListener) {
+    public RestaurantListRecyclerAdapter(RestaurantViewModel viewModel, List<Store> storeFeed, OnStoreSelectedListener onStoreSelectedListener) {
+        this.restaurantViewModel = viewModel;
         this.storeList = storeFeed;
         this.onStoreSelectedListener = onStoreSelectedListener;
     }
@@ -33,13 +38,20 @@ public class RestaurantListRecyclerAdapter extends RecyclerView.Adapter<Restaura
 
     @Override
     public void onBindViewHolder(@NonNull StoreFeedViewHolder holder, int position) {
-        holder.bind(storeList.get(position), onStoreSelectedListener);
+        holder.bind(restaurantViewModel, storeList.get(position), onStoreSelectedListener);
     }
 
     @Override
     public int getItemCount() {
         return storeList != null ? storeList.size() : 0;
     }
+
+//    private void setLikeListener(ItemRestaurantBinding binding, Store store){
+//        binding.likeBtn.setOnClickListener(v -> {
+//            SharedPrefManager.setLikeForStoreById(context, String.valueOf(store.getId()), !store.isLiked());
+//            store.setLiked(!store.isLiked());
+//        });
+//    }
 
     class StoreFeedViewHolder extends RecyclerView.ViewHolder {
 
@@ -50,7 +62,8 @@ public class RestaurantListRecyclerAdapter extends RecyclerView.Adapter<Restaura
             this.binding = binding;
         }
 
-        public void bind(Store store, OnStoreSelectedListener onStoreSelectedListener) {
+        public void bind(RestaurantViewModel viewModel, Store store, OnStoreSelectedListener onStoreSelectedListener) {
+            this.binding.setViewModel(viewModel);
             this.binding.setOnStoreSelected(onStoreSelectedListener);
             this.binding.setStore(store);
             this.binding.executePendingBindings();

@@ -62,7 +62,7 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.6'
 
     implementation 'com.squareup.picasso:picasso:2.8'
-    implementation 'com.google.android.gms:play-services-location:17.1.0'
+    implementation 'com.google.android.gms:play-services-location:18.0.0'
 
     // Commenting as it will be used as it requires config file which will be not shared and will affect build
 //    // Import the Firebase BoM
@@ -74,8 +74,11 @@ dependencies {
 //    implementation 'com.google.firebase:firebase-analytics'
 
 
+    testImplementation 'junit:junit:4.13.2'
+    // Robolectric environment
     testImplementation 'androidx.test:core:1.3.0'
-    testImplementation 'junit:junit:4.13.1'
+    // Mockito framework
+    testImplementation 'org.mockito:mockito-core:2.7.22'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 
     // Espresso
@@ -83,5 +86,4 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-contrib:3.3.0'
     // UiAutomator Testing
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
-
 }
