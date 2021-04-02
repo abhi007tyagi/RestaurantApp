@@ -16,7 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RestaurantListRecyclerAdapter extends RecyclerView.Adapter<RestaurantListRecyclerAdapter.StoreFeedViewHolder> {
+public class    RestaurantListRecyclerAdapter extends RecyclerView.Adapter<RestaurantListRecyclerAdapter.StoreFeedViewHolder> {
 
     RestaurantViewModel restaurantViewModel;
     List<Store> storeList;

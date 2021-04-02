@@ -12,10 +12,13 @@ import retrofit2.Response;
 
 public class RestaurantRepository {
 
+    private Context context;
     private StoreFeedAPI storeFeedAPI;
     private MutableLiveData<StoreFeed> storFeed;
-    MutableLiveData<Boolean> isLoading;
-    public RestaurantRepository (Context context){
+    private MutableLiveData<Boolean> isLoading;
+    public boolean serviceResponse;
+    public RestaurantRepository (Context ctx){
+        context = ctx;
         isLoading = new MutableLiveData<>();
         storeFeedAPI = RestaurantService.getInstance(context).create(StoreFeedAPI.class);
         storFeed = new MutableLiveData<>();
@@ -63,4 +66,7 @@ public class RestaurantRepository {
         });
     }
 
+    public void setStoreLiked(String id, boolean liked) {
+        SharedPrefManager.setLikeForStoreById(context, id, liked);
+    }
 }

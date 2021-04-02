@@ -13,26 +13,27 @@ import androidx.lifecycle.MutableLiveData;
 
 public class RestaurantViewModel extends AndroidViewModel {
 
-    RestaurantRepository restaurentRepository;
-    LiveData<StoreFeed> storeFeed;
-    LiveData<Boolean> progressVisible;
-    MutableLiveData<Store> selectedStore;
+    private RestaurantRepository restaurantRepository;
+    private LiveData<StoreFeed> storeFeed;
+    private LiveData<Boolean> progressVisible;
+    private MutableLiveData<Store> selectedStore;
+    private boolean isLocationAvailable = false;
 
 
     public RestaurantViewModel(@NonNull Application application) {
         super(application);
-
         selectedStore = new MutableLiveData<>();
-        restaurentRepository = new RestaurantRepository(application.getApplicationContext());
-        progressVisible = restaurentRepository.isLoading();
-        storeFeed = restaurentRepository.getStoreFeed();
+        restaurantRepository = new RestaurantRepository(application.getApplicationContext());
+        progressVisible = restaurantRepository.isLoading();
+        storeFeed = restaurantRepository.getStoreFeed();
     }
+
 
     /**
      *
      * @return LiveData<StoreFeed>
      */
-    public LiveData<StoreFeed> getStoreFeed(){
+    public LiveData<StoreFeed> getStoreFeed() {
         return storeFeed;
     }
 
@@ -50,15 +51,18 @@ public class RestaurantViewModel extends AndroidViewModel {
      *
      * @param store
      */
-    public void setSelectedStore(Store store){
+    public void setSelectedStore(Store store) {
         this.selectedStore.postValue(store);
     }
 
     /**
-     *
-     * @return
+     * @return LiveData<Store>
      */
-    public LiveData<Store> getSelectedStore(){
+    public LiveData<Store> getSelectedStore() {
         return this.selectedStore;
+    }
+
+    public void setStoreLiked(String id, boolean liked){
+        restaurantRepository.setStoreLiked(id, liked);
     }
 }
